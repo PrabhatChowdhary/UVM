@@ -1,0 +1,38 @@
+`include "uvm_macros.svh"
+import uvm_pkg::*;
+
+class driver extends uvm_driver;
+  `uvm_component_utils(driver)
+  
+  function new(string path, uvm_component parent);
+    super.new(path, parent);
+  endfunction
+  
+  task run();
+    `uvm_info("DRV","driver1 executed",UVM_NONE);
+    #5;
+    `uvm_warning("DRV", "warining msg");
+    #5;
+    `uvm_error("DRV","error msg 1");
+    #5;
+    `uvm_error("DRV","error msg 2");
+   /* #5;
+    `uvm_fatal("DRV","fatal msg");
+    #5;
+    `uvm_fatal("DRV2","fatal msg");
+    */
+  endtask
+endclass
+
+module tb;
+  driver drv;
+  
+  initial begin;
+    drv = new("DRV",null);
+    //drv.set_report_severity_override(UVM_FATAL, UVM_ERROR);//changes severity of all UVM_FATAL to UVM_ERROR
+    //drv.set_report_severity_id_override(UVM_FATAL,"DRV2",UVM_ERROR);//changes severity of id- DRV2 from UVM_FATAL to UVM_ERROR
+    //drv.set_report_severity_action(UVM_FATAL, UVM_DISPLAY); //uvm_info will not be displayed now
+    drv.set_report_max_quit_count(2);
+    drv.run();
+  end
+endmodule

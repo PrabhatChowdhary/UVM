@@ -1,0 +1,35 @@
+// Code your testbench here
+// or browse Examples
+`include "uvm_macros.svh"
+import uvm_pkg::*;
+
+class driver extends uvm_driver;
+  `uvm_component_utils(driver);
+  
+  function new(string path, uvm_component parent);
+    super.new(path, parent);
+  endfunction
+  
+  task run();
+    `uvm_warning("DRV","warning 1");
+    #5
+    `uvm_warning("DRV","warning 2");
+    #5
+    `uvm_warning("DRV","warning 3");
+    #5
+    `uvm_warning("DRV","warning 4");
+  endtask
+  
+endclass
+
+module tb;
+  driver drv;
+  
+  initial begin
+    drv = new("DRV",null);
+    drv.set_report_severity_action(UVM_WARNING, UVM_COUNT|UVM_WARNING);
+    drv.set_report_max_quit_count(3);
+    drv.run();
+  end
+  
+endmodule

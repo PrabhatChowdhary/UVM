@@ -1,0 +1,19 @@
+// Code your testbench here
+// or browse Examples
+//since we have not used any uvm macros we don't need to include the two mandary statements that we use in an uvm
+class number;
+  rand bit [3:0] data; //rand is a modifier and we use it here to generate 4 bit pseudo random number
+endclass
+
+module tb;
+  
+  number n;
+  
+  initial begin
+    n = new(); // the class only gets memory allocated after we add a construtor
+    //to generate the random value for the data member of a class we need to call randomize method
+    n.randomize();
+    $display("the random number generated is %0d",n.data);
+  end
+endmodule
+  

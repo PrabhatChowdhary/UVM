@@ -1,0 +1,30 @@
+// Code your testbench here
+// or browse Examples
+`include "uvm_macros.svh"
+import uvm_pkg::*;
+
+class driver extends uvm_driver;
+  `uvm_component_utils(driver)
+  
+  //below function adds uvm_component to factory
+  function new(string path, uvm_component parent);
+    super.new(path, parent);
+  endfunction
+  
+  task run();
+    `uvm_info("DRV1","Executed Diver1 Code", UVM_HIGH);//this will not display because default verbosity is medium
+    `uvm_info("DRV2","Executed Driver2 Code", UVM_HIGH);//this will display since we change verbosity of DRV2 has high
+  endtask
+  
+endclass
+
+module tb;
+  driver drv;
+  
+  initial begin
+    drv = new("DRV",null);
+    drv.set_report_id_verbosity("DRV2",UVM_HIGH);
+    drv.run();
+  end
+  
+endmodule

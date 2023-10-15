@@ -1,0 +1,47 @@
+`include "uvm_macros.svh"
+import uvm_pkg::*;
+
+class driver extends uvm_driver;
+  `uvm_component_utils(driver)
+  
+  function new(string path, uvm_component parent);
+    super.new(path, parent);
+  endfunction
+  
+  task run();
+    `uvm_info("DRV","message from driver",UVM_MEDIUM);
+  endtask
+endclass
+
+class env extends uvm_env;
+  `uvm_component_utils(env)
+  
+  driver drv;
+  
+  function new(string path, uvm_component parent);
+    super.new(path, parent);
+  endfunction
+  
+  task run();
+    drv = new("DRV", this);
+    `uvm_info("DRV",$sformatf("verbosity of driver is %0d",drv.get_report_verbosity_level),UVM_LOW);
+    drv.run();
+  endtask
+  
+endclass
+  
+
+module tb;
+  env e;
+  int level;
+  
+  initial begin
+    e = new("ENV",null);
+    e.set_report_verbosity_level_hier(UVM_HIGH);
+    uvm_top.set_report_verbosity_level(UVM_LOW);
+    
+    level = e.get_report_verbosity_level;
+    e.run();
+    `uvm_info("ENV",$sformatf("verbosity level of env is %0d",level),UVM_LOW);
+  end
+endmodule

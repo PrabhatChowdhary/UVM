@@ -1,0 +1,47 @@
+`include "uvm_macros.svh"
+import uvm_pkg::*;
+
+class driver extends uvm_driver;
+  `uvm_component_utils(driver)
+  
+  function new(string path, uvm_component parent);
+    super.new(path, parent);
+  endfunction
+  
+  task run();
+    `uvm_info("DRV1","Executed driver1",UVM_HIGH);
+    `uvm_info("DRV2","Executed driver2",UVM_HIGH);
+  endtask
+  
+endclass
+
+class env extends uvm_env;
+  `uvm_component_utils(env)
+  
+  function new(string path, uvm_component parent);
+    super.new(path, parent);
+  endfunction
+  
+  task run();
+    `uvm_info("ENV1","env1 executed", UVM_HIGH);
+    `uvm_info("ENV2","env2 executed", UVM_HIGH);
+  endtask
+  
+endclass
+
+module tb;
+  driver drv;
+  env e;
+  
+  initial begin
+    drv = new("DRV", null);
+    e = new("ENV", null);
+   // drv.set_report_verbosity_level(UVM_HIGH);
+    e.set_report_verbosity_level(UVM_HIGH);
+    drv.run();
+    e.run();
+    
+  end
+endmodule
+
+  
