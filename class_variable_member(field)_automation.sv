@@ -2,7 +2,7 @@
 import uvm_pkg::*;
 
 class obj extends uvm_object;
-  //`uvm_object_utils(obj) commenting this because we want to use a registered variable/member and in turn use automation on that variable/member
+  //`uvm_object_utils(obj) commenting this because we want to use a registered variable/member  and in turn use automation on that variable/member
   
   function new(string path = "obj");
     super.new(path);
