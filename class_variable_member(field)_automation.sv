@@ -9,9 +9,11 @@ class obj extends uvm_object;
   endfunction
    
   rand bit [3:0] a;
+  rand bit [7:0] b;
   //below allows us to use automatic implementations of core data methods
   `uvm_object_utils_begin(obj)
   `uvm_field_int(a, UVM_DEFAULT); //UVM_DEFAULT|UVM_BIN can be used if we want result in binary in place of hex which is default
+  `uvm_field_int(b, UVM_DEFAULT|UVM_DEC);
   `uvm_object_utils_end
   //if variable is not registered and the above 3 lines are commented out, there will be no compilation error. But an empty table with just variable name will be printed, and variable value will not be printed
 endclass
