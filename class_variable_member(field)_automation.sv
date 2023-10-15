@@ -13,7 +13,7 @@ class obj extends uvm_object;
   `uvm_object_utils_begin(obj)
   `uvm_field_int(a, UVM_DEFAULT); //UVM_DEFAULT|UVM_BIN can be used if we want result in binary in place of hex which is default
   `uvm_object_utils_end
-  
+  //if variable is not registered and the above 3 lines are commented out, there will be no compilation error. But an empty table with just variable name will be printed, and variable value will not be printed
 endclass
 
 module tb;
