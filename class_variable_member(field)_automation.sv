@@ -9,7 +9,7 @@ class obj extends uvm_object;
   endfunction
    
   rand bit [3:0] a;
-  
+  //below allows us to use automatic implementations of core data methods
   `uvm_object_utils_begin(obj)
   `uvm_field_int(a, UVM_DEFAULT);
   `uvm_object_utils_end
