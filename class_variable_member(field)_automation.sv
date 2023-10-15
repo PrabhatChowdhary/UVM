@@ -11,7 +11,7 @@ class obj extends uvm_object;
   rand bit [3:0] a;
   //below allows us to use automatic implementations of core data methods
   `uvm_object_utils_begin(obj)
-  `uvm_field_int(a, UVM_DEFAULT);
+  `uvm_field_int(a, UVM_DEFAULT); //UVM_DEFAULT|UVM_BIN can be used if we want result in binary in place of hex which is default
   `uvm_object_utils_end
   
 endclass
