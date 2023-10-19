@@ -17,11 +17,10 @@ endclass
 module tb;
   
   first s1, s2;
-  int status = 0;
   
   initial begin
-    s1 = first::type_id::create;
-    s2 = first::type_id::create;
+    s1 = first::type_id::create("ss1");
+    s2 = first::type_id::create("ss2");
     s1.randomize();
     s2.randomize();
     
@@ -31,7 +30,7 @@ module tb;
     status = s1.compare(s2);
     $display("value of status is %0d", status);
     
-    //result of print shows that we have a single data handle f for both the instances.
+  
   end
 endmodule
 
