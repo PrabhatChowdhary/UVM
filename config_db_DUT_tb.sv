@@ -33,7 +33,7 @@ class drv extends uvm_driver;
     super.build_phase(phase);
     if(!uvm_config_db#(virtual adder_if)::get(this,"","aif",aif))
   //reference to coponent that is trying to acess configuration data = this = uvm_test_top.env.agent.drv,
-  //heirarchial path from where is config data is being accessed = "" means default of global namespace instance name, 
+  //heirarchial path = location of config data in hierarchy = "" means default of global namespace instance name, 
   //key, 
   //value
       `uvm_error("drv","unable to access interface");
