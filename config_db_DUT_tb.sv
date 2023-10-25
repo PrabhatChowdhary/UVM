@@ -32,7 +32,7 @@ class drv extends uvm_driver;
   virtual function void build_phase(uvm_phase phase);
     super.build_phase(phase);
     if(!uvm_config_db#(virtual adder_if)::get(this,"","aif",aif))
-  //reference to coponent that is trying to acess configuration data = this = uvm_test_top.env.agent.drv,
+  //reference to component that is trying to acess configuration data = this = uvm_test_top.env.agent.drv,
   //heirarchial path = location of config data in hierarchy = "" means default of global namespace instance name, 
   //key, 
   //value
@@ -111,6 +111,11 @@ module tb;
   
   initial begin
     uvm_config_db#(virtual adder_if)::set(null,"uvm_test_top.env.agent.drv","aif",aif);
+    //refers to UVM component where the function is being called. Null means it is not tied to a particular class and belongs to default or global space
+    //hpath = path of class where we are storing the value
+    //key
+    //value
+    
     run_test("test");
   end
   
